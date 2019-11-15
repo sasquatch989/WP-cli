@@ -3,10 +3,12 @@
 APP=$(basename "$0")
 
 usage() {
-  printf '\nUsage: blog.sh ACTION[post | category] OPTION[--help|--category] \
-	\n\n\tACTION:\n\t\tpost: Post new blog entry\n\t\tcategory: Create \
-	new category tag\n\nOPTION:\n\t\t--help Display this help content \
-	\n\t\t--category: Assign a category tag to a post'
+  printf '\nUsage: blog.sh ACTION[post|category] OPTION[--help|--category] 
+\n\tACTION:\n\t\tpost: Post new blog entry\n\t\tcategory: Create new category
+\n\tOPTION:\n\t\t--help Display this help content 
+\t\t--category: Assign a category tag to a post
+\nExample: \nblog.sh post add "title" "content" - Will add a new blog post
+blog.sh category list - Will list all current categories'
   if $1; then
 	  printf '\n%s' "$1"
   fi
@@ -17,7 +19,7 @@ usage() {
 parse_args() {
 #Takes long-form arguments
   opts=":-:"
-  if [ $OPTIND -eq 1 ]; then
+  if [[ -z $@ ]]; then
 	  return_name
   fi
   while getopts "$opts" option; do
@@ -26,7 +28,7 @@ parse_args() {
 		case "$OPTARG" in
                  	help)  usage;;
 			category) printf 'category';;
-                /?) echo ":Unknown option: -${OPTARG}" >&2; usage;;
+                *) echo ":Unknown option: -${OPTARG}" >&2; usage;;
         		
 		esac 
 	esac
@@ -36,7 +38,7 @@ parse_args() {
 
 return_name() {
 #Returns the name of the running application
-  printf "\n$APP\n"
+  printf "\nThis app is called %s\n" "$APP"
   exit 0
 }
 
