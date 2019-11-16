@@ -15,7 +15,7 @@
 		"postIDs": {
 			"0": {
 				"title": "Example Title",
-				"category": "Example",
+				"catID": "0",
 				"content": "This is some example text to represent my Example Post"
 			}
 		},
