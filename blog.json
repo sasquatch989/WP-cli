@@ -1,0 +1,28 @@
+[{
+	"api": {
+		"apiEnable": "False",
+		"apiMeta": {
+			"apiPlatform": "None",
+			"apiCredentialType": "None",
+			"apiCredentialMeta": {
+				"apiCredentialPath": "None",
+				"apiUser": "None",
+				"apiURL": "https://myblog.blog"
+			}
+		}
+	},
+	"blog": {
+		"postIDs": {
+			"0": {
+				"title": "Example Title",
+				"category": "Example",
+				"content": "This is some example text to represent my Example Post"
+			}
+		},
+		"categories": {
+			"catID": {
+				"0": "Example"
+			}
+		}
+	}
+}]
