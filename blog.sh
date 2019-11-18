@@ -1,12 +1,6 @@
 #!/usr/bin/bash
 
 APP=$(basename "$0")
-ACTION=$1
-TASK=$2
-POS3=$3
-POS4=$4
-POS5=$5
-POS6=$6
 DB_FILE=./blog.json
 
 usage() {
@@ -27,13 +21,18 @@ printf "\nUsage:\n\tblog.sh ACTION {TASK [OPTION|INPUT]}\
 }
 
 start_parse() {
+#Declaring positional args dynamically
+  for i in $(seq 1 "$#"); do
+        declare ARG$i=$(echo ${!i})
+  done
+
 #Using positional args
 
-  	case "$ACTION" in
+  	case "$ARG1" in
 		--help|-h) usage;;
 		post) post;;
 		category) category;;
-		*) usage "Unknown option ${ACTION}";;	
+		*) usage "Unknown argument: ${ARG1}";;	
 	esac
 }
 
@@ -45,7 +44,7 @@ return_name() {
 
 
 post() {
-  case "$TASK" in 
+  case "$ARG2" in 
 	add) post_add;;
 	list) post_list;; 
 	search) post_search;;
@@ -54,11 +53,11 @@ post() {
 }
 
 post_add() {
-  if [[ ! -n $POS3 ]] | [[ ! -n $POS4 ]]; then
+  if [[ ! -n $ARG3 ]] | [[ ! -n $ARG4 ]]; then
 	  post_add_help
   fi
 
-  
+  BLOG_COUNT=$(jq '.[].blog.postIDs | length' blog.json)
   
 
 }
@@ -88,7 +87,7 @@ exit 1
 }
 
 category() {
-
+pass
 
 }
 
